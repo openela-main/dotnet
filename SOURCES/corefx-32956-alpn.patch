@@ -1,0 +1,22 @@
+From 9b9697318e9990655ea878a28a00eda44fb615c2 Mon Sep 17 00:00:00 2001
+From: Jeremy Barton <jbarton@microsoft.com>
+Date: Mon, 22 Oct 2018 11:54:52 -0700
+Subject: [PATCH] Fix ALPN detection logic (for non-portable shim builds)
+
+---
+ .../Unix/System.Security.Cryptography.Native/configure.cmake    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Native/Unix/System.Security.Cryptography.Native/configure.cmake b/src/Native/Unix/System.Security.Cryptography.Native/configure.cmake
+index cdc9f50f3c33..fac8c16343df 100644
+--- a/src/Native/Unix/System.Security.Cryptography.Native/configure.cmake
++++ b/src/Native/Unix/System.Security.Cryptography.Native/configure.cmake
+@@ -2,7 +2,7 @@ include(CheckLibraryExists)
+ include(CheckFunctionExists)
+ 
+ set(CMAKE_REQUIRED_INCLUDES ${OPENSSL_INCLUDE_DIR})
+-set(CMAKE_REQUIRED_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY})
++set(CMAKE_REQUIRED_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
+ 
+ check_function_exists(
+     EC_GF2m_simple_method

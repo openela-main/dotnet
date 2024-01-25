@@ -1,0 +1,27 @@
+diff --git a/src/Native/Unix/configure.cmake b/src/Native/Unix/configure.cmake
+index f4a30ad6cb..f2db68402a 100644
+--- a/src/Native/Unix/configure.cmake
++++ b/src/Native/Unix/configure.cmake
+@@ -27,6 +27,12 @@ else ()
+     message(FATAL_ERROR "Unknown platform.  Cannot define PAL_UNIX_NAME, used by RuntimeInformation.")
+ endif ()
+ 
++
++set (PREVIOUS_CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
++set (CMAKE_CXX_FLAGS "-D_GNU_SOURCE")
++set (PREVIOUS_CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
++set (CMAKE_C_FLAGS "-D_GNU_SOURCE")
++
+ # We compile with -Werror, so we need to make sure these code fragments compile without warnings.
+ # Older CMake versions (3.8) do not assign the result of their tests, causing unused-value errors
+ # which are not distinguished from the test failing. So no error for that one.
+@@ -698,6 +704,9 @@ endif()
+ 
+ set (CMAKE_REQUIRED_LIBRARIES)
+ 
++set (CMAKE_CXX_FLAGS "${PREVIOUS_CMAKE_CXX_FLAGS}")
++set (CMAKE_C_FLAGS "${PREVIOUS_CMAKE_C_FLAGS}")
++
+ check_c_source_compiles(
+     "
+     #include <sys/inotify.h>

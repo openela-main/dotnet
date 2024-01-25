@@ -1,0 +1,12 @@
+diff --git a/src/Native/Unix/CMakeLists.txt b/src/Native/Unix/CMakeLists.txt
+index 7d804a1e54..717c2718d7 100644
+--- a/src/Native/Unix/CMakeLists.txt
++++ b/src/Native/Unix/CMakeLists.txt
+@@ -25,7 +25,6 @@ add_compile_options(-fPIC)
+ add_compile_options(-I${CMAKE_CURRENT_SOURCE_DIR}/Common)
+ add_compile_options(-I${CMAKE_CURRENT_BINARY_DIR}/Common)
+ add_compile_options(-g)
+-add_compile_options(-Werror)
+ if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 3.5)
+     add_compile_options(-Wno-unreachable-code)
+ endif ()

@@ -1,0 +1,11 @@
+--- a/src/corehost/cli/exe/exe.cmake
++++ b/src/corehost/cli/exe/exe.cmake
+@@ -44,6 +44,8 @@
+ 
+ add_executable(${DOTNET_HOST_EXE_NAME} ${SOURCES} ${RESOURCES})
+ 
++SET_TARGET_PROPERTIES(${DOTNET_HOST_EXE_NAME} PROPERTIES LINK_FLAGS -pie)
++
+ if(NOT WIN32)
+     disable_pax_mprotect(${DOTNET_HOST_EXE_NAME})
+ endif()

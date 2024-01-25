@@ -1,0 +1,11 @@
+--- a/src/debug/createdump/CMakeLists.txt
++++ b/src/debug/createdump/CMakeLists.txt
+@@ -38,6 +38,8 @@
+     main.cpp
+ )
+ 
++SET_TARGET_PROPERTIES(createdump PROPERTIES LINK_FLAGS -pie)
++
+ target_link_libraries(createdump
+     createdump_lib
+     # share the PAL in the dac module
