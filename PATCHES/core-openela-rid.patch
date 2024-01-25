@@ -1,0 +1,229 @@
+diff -Naurp dotnet-v2.1.526-SDK-orig/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.compatibility.json dotnet-v2.1.526-SDK/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.compatibility.json
+--- dotnet-v2.1.526-SDK-orig/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.compatibility.json	2021-07-29 06:45:17.000000000 -0700
++++ dotnet-v2.1.526-SDK/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.compatibility.json	2021-08-12 09:38:44.071253522 -0700
+@@ -7535,6 +7535,131 @@
+     "any",
+     "base"
+   ],
++  "openela": [
++    "openela",
++    "rhel",
++    "linux",
++    "unix",
++    "any",
++    "base"
++  ],
++  "openela-corert": [
++    "openela-corert",
++    "openela",
++    "rhel-corert",
++    "rhel",
++    "linux-corert",
++    "linux",
++    "unix-corert",
++    "unix",
++    "corert",
++    "any",
++    "base"
++  ],
++  "openela-x64": [
++    "openela-x64",
++    "openela",
++    "rhel-x64",
++    "rhel",
++    "linux-x64",
++    "linux",
++    "unix-x64",
++    "unix",
++    "any",
++    "base"
++  ],
++  "openela-x64-corert": [
++    "openela-x64-corert",
++    "openela-corert",
++    "openela-x64",
++    "rhel-x64-corert",
++    "openela",
++    "rhel-corert",
++    "rhel-x64",
++    "linux-x64-corert",
++    "rhel",
++    "linux-corert",
++    "linux-x64",
++    "unix-x64-corert",
++    "linux",
++    "unix-corert",
++    "unix-x64",
++    "unix",
++    "corert",
++    "any",
++    "base"
++  ],
++  "openela.8": [
++    "openela.8",
++    "openela",
++    "rhel.8",
++    "rhel",
++    "linux",
++    "unix",
++    "any",
++    "base"
++  ],
++  "openela.8-corert": [
++    "openela.8-corert",
++    "openela.8",
++    "openela-corert",
++    "rhel.8-corert",
++    "openela",
++    "rhel.8",
++    "rhel-corert",
++    "rhel",
++    "linux-corert",
++    "linux",
++    "unix-corert",
++    "unix",
++    "corert",
++    "any",
++    "base"
++  ],
++  "openela.8-x64": [
++    "openela.8-x64",
++    "openela.8",
++    "openela-x64",
++    "rhel.8-x64",
++    "openela",
++    "rhel.8",
++    "rhel-x64",
++    "rhel",
++    "linux-x64",
++    "linux",
++    "unix-x64",
++    "unix",
++    "any",
++    "base"
++  ],
++  "openela.8-x64-corert": [
++    "openela.8-x64-corert",
++    "openela.8-corert",
++    "openela.8-x64",
++    "openela.8",
++    "openela-x64-corert",
++    "openela-corert",
++    "rhel.8-corert",
++    "openela-x64",
++    "rhel.8-x64",
++    "openela",
++    "rhel.8",
++    "rhel-x64-corert",
++    "rhel-corert",
++    "rhel-x64",
++    "rhel",
++    "linux-x64-corert",
++    "linux-corert",
++    "linux-x64",
++    "linux",
++    "unix-x64-corert",
++    "unix-corert",
++    "unix-x64",
++    "unix",
++    "corert",
++    "any",
++    "base"
++  ],
+   "sles": [
+     "sles",
+     "linux",
+@@ -12397,4 +12522,4 @@
+     "any",
+     "base"
+   ]
+-}
+\ No newline at end of file
++}
+diff -Naurp dotnet-v2.1.526-SDK-orig/src/corefx/pkg/Microsoft.NETCore.Platforms/runtimeGroups.props dotnet-v2.1.526-SDK/src/corefx/pkg/Microsoft.NETCore.Platforms/runtimeGroups.props
+--- dotnet-v2.1.526-SDK-orig/src/corefx/pkg/Microsoft.NETCore.Platforms/runtimeGroups.props	2021-07-29 06:45:17.000000000 -0700
++++ dotnet-v2.1.526-SDK/src/corefx/pkg/Microsoft.NETCore.Platforms/runtimeGroups.props	2021-08-12 09:39:51.937129335 -0700
+@@ -116,6 +116,14 @@
+       <Versions>8;8.0;8.1</Versions>
+     </RuntimeGroup>
+ 
++    <RuntimeGroup Include="openela">
++      <Parent>rhel</Parent>
++      <Architectures>x64</Architectures>
++      <Versions>8</Versions>
++      <ApplyVersionsToParent>true</ApplyVersionsToParent>
++      <TreatVersionsAsCompatible>false</TreatVersionsAsCompatible>
++    </RuntimeGroup>
++
+     <RuntimeGroup Include="sles">
+       <Parent>linux</Parent>
+       <Architectures>x64</Architectures>
+diff -Naurp dotnet-v2.1.526-SDK-orig/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.json dotnet-v2.1.526-SDK/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.json
+--- dotnet-v2.1.526-SDK-orig/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.json	2021-07-29 06:45:17.000000000 -0700
++++ dotnet-v2.1.526-SDK/src/corefx/pkg/Microsoft.NETCore.Platforms/runtime.json	2021-08-12 09:40:07.579331201 -0700
+@@ -2665,6 +2665,58 @@
+         "rhel.8.0-x64-corert"
+       ]
+     },
++    "openela": {
++      "#import": [
++        "rhel"
++      ]
++    },
++    "openela-corert": {
++      "#import": [
++        "openela",
++        "rhel-corert"
++      ]
++    },
++    "openela-x64": {
++      "#import": [
++        "openela",
++        "rhel-x64"
++      ]
++    },
++    "openela-x64-corert": {
++      "#import": [
++        "openela-corert",
++        "openela-x64",
++        "rhel-x64-corert"
++      ]
++    },
++    "openela.8": {
++      "#import": [
++        "openela",
++        "rhel.8"
++      ]
++    },
++    "openela.8-corert": {
++      "#import": [
++        "openela.8",
++        "openela-corert",
++        "rhel.8-corert"
++      ]
++    },
++    "openela.8-x64": {
++      "#import": [
++        "openela.8",
++        "openela-x64",
++        "rhel.8-x64"
++      ]
++    },
++    "openela.8-x64-corert": {
++      "#import": [
++        "openela.8-corert",
++        "openela.8-x64",
++        "openela.8",
++        "openela-x64-corert"
++      ]
++    },
+     "sles": {
+       "#import": [
+         "linux"
+@@ -4630,4 +4682,4 @@
+       ]
+     }
+   }
+-}
+\ No newline at end of file
++}
